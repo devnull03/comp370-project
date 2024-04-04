@@ -1,2 +1,14 @@
-__pycache__
+# Node.js
+node_modules/
 .env
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# Dependency directories
+pids
+logs
+results
+build
