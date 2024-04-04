@@ -40,7 +40,7 @@
     >
       <p class="flex flex-row justify-between w-full">
         <span class="max-w-[75%] break-words">{data.label}</span>
-        <span class="">{data.pts}pts</span>
+        <!-- <span class="">{data.pts}pts</span> -->
       </p>
       <p class="w-full">{binMap[data.bin]}</p>
       <p class="w-full">{data.fact}</p>

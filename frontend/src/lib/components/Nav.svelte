@@ -16,7 +16,7 @@
   ];
 </script>
 
-<nav class="border-t shadow-md fixed bottom-0 w-screen bg-[#223D23] pb-8 pt-4 z-50">
+<nav class="border-t shadow-md fixed bottom-0 w-screen bg-[#7fc7d9] pb-8 pt-4 z-50">
   <div class="flex flex-row w-full justify-evenly items-baseline">
     {#each navItems as navItem}
       <button

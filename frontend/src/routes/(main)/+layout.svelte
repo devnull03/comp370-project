@@ -6,8 +6,8 @@
 
 <Header />
 
-<div class="py-16 overflow-hidden h-screen">
+<div class="pt-16 overflow-hidden h-screen">
   <slot />
 </div>
 
-<Nav />
+<!-- <Nav /> -->
