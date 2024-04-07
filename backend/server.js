@@ -10,7 +10,7 @@ const app = express();
 app.use(cookieParser());
 require('dotenv').config();
 const uri = process.env.URI || " ";
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT || 1345;
 
 app.use(express.json({ limit: '50mb' }));
 

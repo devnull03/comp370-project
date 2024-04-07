@@ -99,13 +99,13 @@
   });
 </script>
 
-<div class="w-full h-full object-fill overflow-clip">
+<div class="w-full h-full rounded-[20px] object-cover overflow-clip">
   <!-- svelte-ignore a11y-media-has-caption -->
   <div class="relative overflow-clip">
     <video bind:this={videoSource} class="w-full h-screen object-cover" />
     {#if cameraShown}
       <div
-        class="absolute bottom-40 flex justify-center items-end z-10 h-full w-full"
+        class="absolute bottom-60 flex justify-center items-end z-10 h-full w-full"
       >
         <div class="flex flex-row items-center gap-4">
           <span class="w-10">&nbsp;</span>

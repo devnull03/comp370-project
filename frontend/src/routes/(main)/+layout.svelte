@@ -1,13 +1,29 @@
 <script>
   import Header from "$lib/components/Header.svelte";
-  import Nav from "$lib/components/Nav.svelte";
+  import { onMount } from "svelte";
+
+  let firstLoad = true;
+
+  onMount(() => {
+    if (firstLoad) {
+      setTimeout(() => {
+        firstLoad = false;
+      }, 1500);
+    }
+  });
 </script>
 
+{#if firstLoad}
+  <main class="h-screen w-screen flex items-center justify-center bg-[#7fc7d9]">
+    <div class="flex flex-col items-center">
+      <img src="/favicon.png" alt="Logo" class="w-20 h-20 animate-bounce" />
+      <span class="text-2xl font-lemon"> Waste Wizard </span>
+    </div>
+  </main>
+{:else}
+  <!-- <Header /> -->
 
-<Header />
-
-<div class="pt-16 overflow-hidden h-screen">
-  <slot />
-</div>
-
-<!-- <Nav /> -->
+  <!-- <div class="pt-16 overflow-hidden h-screen"> -->
+    <slot />
+  <!-- </div> -->
+{/if}
