@@ -27,7 +27,7 @@
   });
 </script>
 
-<main class="w-screen h-screen bg-[#7fc7d9] px-6 flex flex-col gap-10">
+<main class="w-screen h-screen bg-[#7fc7d9] px-6 flex flex-col gap-10 overflow-auto">
   <Header />
 
   <div
@@ -58,7 +58,7 @@
   <div class="flex flex-col gap-3 justify-center items-center">
     {#if ["R", "O", "L"].includes($image.data.bin)}
       <button
-        on:click={() => goto("/locations")}
+        on:click={() => goto("/location")}
         class="rounded-full text-white bg-[#0F1035] flex text-xl p-3 px-8 gap-4 shadow-lg"
       >
         Disposal locations

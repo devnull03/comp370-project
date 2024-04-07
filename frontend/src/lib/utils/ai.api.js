@@ -20,7 +20,7 @@ export const get_locations = async (bin, label, { latitude, longitude }) => {
 		headers: {
 			'Content-Type': 'application/json',
 		},
-		body: JSON.stringify({ bin, label, latitude, longitude }),
+		body: JSON.stringify({ bin, label, "location": { latitude, longitude } }),
 	});
 
 	const data = await response.json();
