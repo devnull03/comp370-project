@@ -1,8 +1,9 @@
 const express = require('express');
-const { MongoClient, ServerApiVersion } = require('mongodb');
+// const { MongoClient, ServerApiVersion } = require('mongodb');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const { process_image } = require('./openai');
+const { find_places } = require('./places');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt')
 const saltRounds = 10;  
@@ -17,28 +18,28 @@ app.use(express.json({ limit: '50mb' }));
 const secretKey = 'your-secret-key';
 
 // Create a MongoClient with a MongoClientOptions object to set the Stable API version
-const client = new MongoClient(uri, {
-  serverApi: {
-    version: ServerApiVersion.v1,
-    strict: true,
-    deprecationErrors: true,
-  }
-});
+// const client = new MongoClient(uri, {
+//   serverApi: {
+//     version: ServerApiVersion.v1,
+//     strict: true,
+//     deprecationErrors: true,
+//   }
+// });
 
-async function run() {
-  try {
-    // Connect the client to the server	(optional starting in v4.7)
-    await client.connect();
-    // Send a ping to confirm a successful connection
-    await client.db("admin").command({ ping: 1 });
-    console.log("Pinged your deployment. You successfully connected to MongoDB!");
+// async function run() {
+//   try {
+//     // Connect the client to the server	(optional starting in v4.7)
+//     await client.connect();
+//     // Send a ping to confirm a successful connection
+//     await client.db("admin").command({ ping: 1 });
+//     console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
-  } finally {
-    // Ensures that the client will close when you finish/error
-    await client.close();
-  }
-}
-run().catch(console.dir);
+//   } finally {
+//     // Ensures that the client will close when you finish/error
+//     await client.close();
+//   }
+// }
+// run().catch(console.dir);
 
 
 
@@ -76,6 +77,16 @@ app.post('/api/process_image', async (req, res) => {
 
   try {
     let api_res = await process_image(req.body.image);
+    res.json(api_res);
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ error: 'Internal Server Error' });
+  }
+});
+
+app.post('/api/get_locations', async (req, res) => {
+  try {
+    let api_res = await find_places(req.body.bin, req.body.label, req.body.location);
     res.json(api_res);
   } catch (error) {
     console.log(error);
