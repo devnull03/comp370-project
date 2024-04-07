@@ -12,7 +12,7 @@ app.use(cookieParser());
 require('dotenv').config();
 const uri = process.env.URI || " ";
 const PORT = process.env.PORT || 1345;
-const frontend = process.env.FRONTEND_URL || "http://localhost:3000";
+const frontend = process.env.FRONTEND_URL || "https://comp370-project-frontend.vercel.app/";
 
 app.use(express.json({ limit: '50mb' }));
 
@@ -46,7 +46,7 @@ const secretKey = 'your-secret-key';
 
 // Error handling middleware
 app.use(function (req, res, next) {
-  res.setHeader("Access-Control-Allow-Origin", frontend);
+  res.setHeader("Access-Control-Allow-Origin", "https://comp370-project-frontend.vercel.app");
   res.setHeader("Access-Control-Allow-Methods", "GET, POST, PATCH, DELETE, OPTIONS");
   res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization, Content-Length, X-Requested-With");
   res.setHeader('Access-Control-Allow-Credentials', 'true');
