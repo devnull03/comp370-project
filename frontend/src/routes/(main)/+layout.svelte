@@ -1,10 +1,16 @@
 <script>
   import Header from "$lib/components/Header.svelte";
   import { onMount } from "svelte";
+  import { goto } from "$app/navigation";
+  import { image } from "$lib/utils/image.store";
 
   let firstLoad = true;
 
   onMount(() => {
+    if (!$image) {
+      goto("/camera");
+    }
+
     if (firstLoad) {
       setTimeout(() => {
         firstLoad = false;
@@ -24,6 +30,6 @@
   <!-- <Header /> -->
 
   <!-- <div class="pt-16 overflow-hidden h-screen"> -->
-    <slot />
+  <slot />
   <!-- </div> -->
 {/if}

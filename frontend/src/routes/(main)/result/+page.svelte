@@ -1,9 +1,8 @@
 <script>
-  import Camera from "$lib/components/Camera.svelte";
-  import { process_image } from "$lib/utils/ai.api";
   import Header from "$lib/components/Header.svelte";
   import { image } from "$lib/utils/image.store";
   import { goto } from "$app/navigation";
+  import { onMount } from "svelte";
 
   const binMap = {
     R: "Recycling",
@@ -20,6 +19,12 @@
   //     fact: "Plastic bottles are recyclable.",
   //   },
   // };
+
+  onMount(() => {
+    if (!$image) {
+      goto("/camera");
+    }
+  });
 </script>
 
 <main class="w-screen h-screen bg-[#7fc7d9] px-6 flex flex-col gap-10">
@@ -51,12 +56,14 @@
   </div>
 
   <div class="flex flex-col gap-3 justify-center items-center">
-    <button
-      on:click={() => goto("/locations")}
-      class="rounded-full text-white bg-[#0F1035] flex text-xl p-3 px-8 gap-4 shadow-lg"
-    >
-      Disposal locations
-    </button>
+    {#if ["R", "O", "L"].includes($image.data.bin)}
+      <button
+        on:click={() => goto("/locations")}
+        class="rounded-full text-white bg-[#0F1035] flex text-xl p-3 px-8 gap-4 shadow-lg"
+      >
+        Disposal locations
+      </button>
+    {/if}
     <button
       on:click={() => goto("/camera")}
       class="text-[#0F1035] text-opacity-[47%]">Start Over</button

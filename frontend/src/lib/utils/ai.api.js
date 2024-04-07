@@ -12,3 +12,18 @@ export const process_image = async (image) => {
 
 	return data;
 }
+
+export const get_locations = async (bin, label, { latitude, longitude }) => {
+
+	const response = await fetch(`${import.meta.env.VITE_SERVER_ADDR}/api/get_locations`, {
+		method: 'POST',
+		headers: {
+			'Content-Type': 'application/json',
+		},
+		body: JSON.stringify({ bin, label, latitude, longitude }),
+	});
+
+	const data = await response.json();
+
+	return data;
+}

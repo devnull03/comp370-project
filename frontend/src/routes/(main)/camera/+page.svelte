@@ -27,21 +27,6 @@
   };
 </script>
 
-<!-- {#if showPreview}
-  <div
-    transition:slide
-    class="w-full h-full fixed top-0 z-[999] flex justify-center items-center"
-  >
-    <Preview
-      bind:capturedImageUrl
-      bind:data
-      on:close={() => {
-        showPreview = false;
-      }}
-    />
-  </div>
-{/if} -->
-
 {#if loading}
   <div
     class="fixed top-0 left-0 z-50 w-screen h-screen flex items-center justify-center"
@@ -71,19 +56,13 @@
   </div>
 {/if}
 
-
-
 <main class="w-screen h-screen bg-[#7fc7d9] px-6">
   <Header />
-
 
   <div class="rounded-[20px] border-2 border-white h-[75vh]">
     <Camera on:capture={processCapture} />
   </div>
 </main>
-
-
-
 
 <style>
   /* Animation styling */
